@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html lang="en-us"
+  dir="ltr">
+
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+  <meta charset="utf-8">
+<meta name="viewport" content="width=device-width">
+
+
+
+
+
+
+
+
+    
+
+
+
+
+
+
+<link rel="icon" type="image/ico" href="http:/localhost:1313/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="http:/localhost:1313/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="http:/localhost:1313/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="192x192" href="http:/localhost:1313/android-chrome-192x192.png">
+<link rel="apple-touch-icon" sizes="180x180" href="http:/localhost:1313/apple-touch-icon.png">
+
+<meta name="description" content=""/>
+
+
+
+<title>
+    
+    KarolaScript | Bug Digger
+    
+</title>
+
+<link rel="canonical" href="http://localhost:1313/posts/karolascript/"/>
+
+<meta property="og:url" content="http://localhost:1313/posts/karolascript/">
+  <meta property="og:site_name" content="Bug Digger">
+  <meta property="og:title" content="KarolaScript">
+  <meta property="og:description" content="In my quest to better comprehend the fascinating intricacies of compilation process, compiler, and interpreter knowledge, I embarked on a journey of creating my own programming language - KarolaScript.
+KarolaScript is a decidely bare-bones interpreter. It doesn’t have rich features like an interactive debugger or a sophisticated static analyzer, as its primary purpose is to serve as a learning playground.
+KarolaScript, inspired by the fusion of Python and C, provides a procedurally-oriented, dynamically-typed programming environment. It distinguishes itself by recognizing classes and functions as first-class citizens; this allows for versatile usage scenarios such as assignment, passing as function parameters, and inclusion within complex data structures.">
+  <meta property="og:locale" content="en_us">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2023-12-03T18:56:15+02:00">
+    <meta property="article:modified_time" content="2023-12-03T18:56:15+02:00">
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/assets/combined.min.0f4f5c64ee7100cff28e7c7366d922b5499829f72c91a53b9b17f236d85ad7e7.css" media="all">
+
+
+
+
+
+
+
+
+
+
+
+    
+
+
+
+
+</head>
+
+
+
+
+
+
+
+<body class="auto">
+
+  <div class="content">
+    <header>
+      
+
+<div class="header">
+
+    
+
+    <h1 class="header-title">
+        <a href="http://localhost:1313/">Bug Digger</a>
+    </h1>
+
+    <div class="flex">
+        
+
+        
+        
+      
+        <p class="small ">
+            <a href="/" >
+                /home
+            </a>
+        </p>
+        
+      
+        <p class="small ">
+            <a href="/posts" >
+                /posts
+            </a>
+        </p>
+        
+        
+    </div>
+
+    
+
+</div>
+
+    </header>
+
+    <main class="main">
+      
+
+
+
+
+<div class="breadcrumbs"><a href="/">Home</a><span class="breadcrumbs-separator">/</span><a href="/posts/">Posts</a><span class="breadcrumbs-separator">/</span>
+        <a href="/posts/karolascript/">KarolaScript</a></div>
+
+
+<div >
+  <article>
+    <header class="single-intro-container">
+        
+        <h1 class="single-title">KarolaScript</h1>
+    
+        <p class="single-readtime">
+          <time datetime="2023-12-03T18:56:15&#43;02:00">December 3, 2023</time>
+        </p>
+    </header>
+    
+    <div class="single-content">
+      <p>In my quest to better comprehend the fascinating intricacies of compilation process, compiler, and interpreter knowledge, I embarked on a journey of creating my own programming language - KarolaScript.</p>
+<p>KarolaScript is a decidely bare-bones interpreter. It doesn’t have rich features like an interactive debugger or a sophisticated static analyzer, as its primary purpose is to serve as a learning playground.</p>
+<p>KarolaScript, inspired by the fusion of Python and C, provides a procedurally-oriented, dynamically-typed programming environment. It distinguishes itself by recognizing classes and functions as first-class citizens; this allows for versatile usage scenarios such as assignment, passing as function parameters, and inclusion within complex data structures.</p>
+<p>The present method of code execution in KarolaScript involves recursive evaluation of the AST. An upcoming plan includes developing a virtual machine and dedicated bytecode to enhance efficiency. Please note, the current feature list includes class and function operations, control flows, code blocks, and advanced parser capabilities. Updates will be made as progress continues.</p>
+<h2 class="heading" id="grammar">
+  Grammar
+  <a class="anchor" href="#grammar">#</a>
+</h2>
+<pre tabindex="0"><code>program           → declaration* EOF ;
+
+declaration       → classDecl | funDecl | varDecl | statement ;
+
+
+classDecl         → &#34;clazz&#34; IDENTIFIER ( &#34;&lt;&#34; IDENTIFIER )?
+                    &#34;{&#34; member* &#34;}&#34; ;
+
+member            → classMethodDecl | methodDecl ;
+classMethodDecl   → &#34;class&#34; IDENTIFIER &#34;(&#34; parameters? &#34;)&#34; block ;
+methodDecl        → function ;
+
+funDecl           → &#34;funct&#34; function ;
+
+function          → IDENTIFIER &#34;(&#34; parameters? &#34;)&#34; block ;
+parameters        → IDENTIFIER ( &#34;,&#34; IDENTIFIER )* ;
+
+anonFunDecl       → &#34;funct&#34; anonFunction ;
+anonFunction      → &#34;(&#34; parameters? &#34;)&#34; block ;
+
+
+varDecl           → &#34;let&#34; IDENTIFIER ( &#34;=&#34; expression )? &#34;;&#34; ;
+
+
+
+statement         → exprStmt | forStmt | ifStmt | printStmt | returnStmt | whileStmt | block | breakStmt;
+
+returnStmt        → &#34;return&#34; expression? &#34;;&#34; ;
+
+forStmt           → &#34;for&#34; &#34;(&#34; ( varDecl | exprStmt | &#34;;&#34; )
+                    expression? &#34;;&#34;
+                    expression? &#34;)&#34; statement ;
+
+whileStmt         → &#34;while&#34; &#34;(&#34; expression &#34;)&#34; statement ;
+
+exprStmt          → expression &#34;;&#34; ;
+
+ifStmt            → &#34;if&#34; &#34;(&#34; expression &#34;)&#34; statement
+                  ( &#34;else&#34; statement )? ;
+
+printStmt         → &#34;console&#34; expression &#34;;&#34; ;
+block             → &#34;{&#34; declaration* &#34;}&#34; ;
+breakStmt         → &#34;break&#34; &#34;;&#34; ;
+
+
+
+expression        → anonFunDecl | assignment ;
+
+assignment        → ( call &#34;.&#34; )? IDENTIFIER &#34;=&#34; logic_or | commaExpr ;
+
+commaExpr         → logic_or ( &#34;,&#34; logic_or )* ;
+
+logic_or          → logic_and ( &#34;or&#34; logic_and )* ;
+logic_and         → ternaryExpr ( &#34;and&#34; ternaryExpr )* ;
+
+ternaryExpr       → equality ( &#34;?&#34; equality &#34;:&#34; ternaryExpr )? ;
+
+
+
+equality          → comparison ( ( &#34;!=&#34; | &#34;==&#34; ) comparison )* ;
+comparison        → term ( ( &#34;&gt;&#34; | &#34;&gt;=&#34; | &#34;&lt;&#34; | &#34;&lt;=&#34; ) term )* ;
+term              → factor ( ( &#34;-&#34; | &#34;+&#34; ) factor )* ;
+factor            → unary ( ( &#34;/&#34; | &#34;*&#34; ) unary )* ;
+unary             → unaryOperator* primary | call;
+
+call              → primary ( &#34;(&#34; arguments? &#34;)&#34; | &#34;.&#34; IDENTIFIER )* ;
+arguments         → expression ( &#34;,&#34; expression )* ;
+
+primary           → errorPrimary | NUMBER | STRING | &#34;true&#34; | &#34;false&#34; | &#34;nil&#34; | &#34;(&#34; expression &#34;)&#34; | IDENTIFIER | &#34;super&#34; &#34;.&#34; IDENTIFIER ;
+errorPrimary      → binaryOperator expression ;
+unaryOperator     → ( &#34;!&#34; | &#34;-&#34; )
+binaryOperator    → ( &#34;!=&#34; | &#34;==&#34; | &#34;&gt;&#34; | &#34;&gt;=&#34; | &#34;&lt;&#34; | &#34;&lt;=&#34; | &#34;-&#34; | &#34;+&#34; | &#34;/&#34; | &#34;*&#34; )
+</code></pre><h2 class="heading" id="standard-library">
+  Standard library
+  <a class="anchor" href="#standard-library">#</a>
+</h2>
+<p>KarolaScript stdlib consists of following functions:</p>
+<ul>
+<li>console for standard output</li>
+<li>input for standard input</li>
+<li>clock for getting epoch time</li>
+<li>sleep for thread sleep for n miliseconds</li>
+<li>toUpper and toLower</li>
+</ul>
+<p>There is also builtin Math clazz with static functions:</p>
+<ul>
+<li>pwr takes first argument to the power of two</li>
+<li>sqrr00t returns square root of a argument</li>
+</ul>
+<h2 class="heading" id="examples">
+  Examples
+  <a class="anchor" href="#examples">#</a>
+</h2>
+<p>Here are three code snippets with KarolaScript:</p>
+<h3 class="heading" id="basic-operations">
+  Basic operations
+  <a class="anchor" href="#basic-operations">#</a>
+</h3>
+<pre tabindex="0"><code>let a = 5;
+let b = 2;
+
+console &#34;Hello World&#34; + (a + b);
+
+// console (10 / 0);
+
+let name = &#34;bug_digger&#34;;
+name = toUpper(name);
+console name;
+name = toLower(name);
+console name;
+
+let suffix = &#34;_hacker&#34;;
+console name + suffix;
+
+
+let truthy = false;
+console (truthy ? a : (a + b));
+
+
+console &#34;== Loops section ==\n\n&#34;;
+
+for (let i = 1; i &lt; 10; i = i + 1) {
+    console i;
+}
+
+let i = 0;
+while (i &lt;= 100) {
+    console i;
+    i = i + 10;
+}
+</code></pre><h3 class="heading" id="functions-and-anonymous-functions">
+  Functions and anonymous functions
+  <a class="anchor" href="#functions-and-anonymous-functions">#</a>
+</h3>
+<pre tabindex="0"><code>let pass = false;
+
+funct a () {
+    if (pass) {
+        console &#34;Help from function A again!&#34;;
+        return;
+    }
+    console &#34;Hello from function A!&#34;;
+    pass = true;
+}
+
+funct b() {
+    a();
+    console &#34;Hello from function B!&#34;;
+}
+
+console &#34;Regular hello&#34;;
+
+a();
+b();
+
+
+console &#34;\n\n\nAnonymous functions from here!!!\n\n\n&#34;;
+
+
+funct test(fn) {
+  for (let i = 1; i &lt;= 10; i = i + 1) {
+    fn(i);
+  }
+}
+
+test(funct (a) {
+  console a;
+  console &#34;Bug Digger is the best hacker!!!&#34;;
+});
+</code></pre><h3 class="heading" id="classes-and-inheritance">
+  Classes and inheritance
+  <a class="anchor" href="#classes-and-inheritance">#</a>
+</h3>
+<pre tabindex="0"><code>clazz Vehicle {
+  honk() {
+    console &#34;Tuut, tuut.&#34;;
+  }
+
+  engine() {
+    console &#34;Brm, brm.&#34;;
+  }
+
+  static startEngine() {
+    console &#34;Click, click!!!&#34;;
+  }
+}
+
+clazz Car &lt; Vehicle {
+  engine() {
+    console &#34;Brrrrrmmm brmmmmmmmm brrrrmmmm&#34;;
+  }
+}
+
+Vehicle.startEngine();
+
+Car().engine();
+Car().honk();
+</code></pre><h2 class="heading" id="metaclasses">
+  Metaclasses
+  <a class="anchor" href="#metaclasses">#</a>
+</h2>
+<p>Metaclasses in KarolaScript are a form of <a href="https://en.wikipedia.org/wiki/Metaprogramming">metaprogramming</a> as they enable the creation, modification, or management of classes in runtime. So, a metaclass is essentially a class for a class – it defines how a class behaves. So, just as an ordinary object is an instance of a class, a class is an instance of a metaclass. Metaclasses allow you to change how classes are created, typically for API development or building a framework. However, they are generally considered complex to use in daily tasks. Therefore, they are not commonly used despite being a powerful tool. Most programmers prefer simpler, more comprehensible programming methods. Metaclasses can introduce unexpected behavior and complexity, which is why they are often avoided in typical programming tasks.</p>
+<p>Currently exists only one metaclass called exactly <code>MetaClazz</code> and there is no way for user to create their own metaclass. That will change as project grows.</p>
+<p>The motto “explicit is better than implicit” from the Zen of Python applies here. If metaprogramming tools like metaclasses are used, they should be applied with care and for a good reason.</p>
+<h2 class="heading" id="ideas-for-future-enhancements">
+  Ideas for future enhancements
+  <a class="anchor" href="#ideas-for-future-enhancements">#</a>
+</h2>
+<ul>
+<li>Number literals written in binary, hex, and octal</li>
+<li>Pratt Parser for expressions (currently it works with recursive descent for both expressions and statements)</li>
+<li>Arrays</li>
+<li>Add more functions to stdlib and more stdlib classes</li>
+<li>Improve error handling; Currently errors are only displayed on <code>stderr</code>, logging to a file will be a nice addition.
+There is <code>ErrorReporter.h</code> file in utils folder. Some strategy design pattern can be used to select where to redirect errors and warnings.</li>
+<li>Add VM with garbage collection and bytecode generation</li>
+<li>Add lambda but make it work like in Python</li>
+<li>Add possiblity for user to create his own metaclass; For example user-defined metaclasses can start with <code>$clazz</code></li>
+<li>Test cases</li>
+<li>Allow multiple code files</li>
+</ul>
+<hr>
+<p>Github link: <a href="https://github.com/bbugdigger/KarolaScript">https://github.com/bbugdigger/KarolaScript</a></p>
+
+    </div>
+  </article>
+
+  
+
+  
+
+  
+  
+
+<div class="single-pagination">
+    <hr />
+
+    <div class="flexnowrap">
+
+        <div class="single-pagination-prev">
+            
+            <div class="single-pagination-container-prev">
+                <div class="single-pagination-text">←</div>
+                <div class="single-pagination-text">
+                    <a href="/posts/minesweeperhack/">
+                        Minesweeper Hack
+                    </a>
+                </div>
+            </div>
+            
+        </div>
+
+        <div class="single-pagination-next">
+            
+            <div class="single-pagination-container-next">
+                <div class="single-pagination-text">
+                    <a href="/posts/codzombie/">
+                        Call of Duty Zombie Hack
+                    </a>
+                </div>
+                <div class="single-pagination-text">→</div>
+            </div>
+            
+        </div>
+
+    </div>
+
+    <hr />
+</div>
+
+
+
+  
+
+  
+
+  
+  <div class="back-to-top">
+    <a href="#top">
+      back to top
+    </a>
+  </div>
+  
+
+</div>
+
+
+    </main>
+  </div>
+
+  
+  
+
+
+
+
+
+    
+
+
+
+
+  <footer>
+    
+
+    
+    
+
+
+
+
+
+    
+
+
+
+
+    
+    <p>Powered by
+        <a href="https://gohugo.io/">Hugo</a>
+        and
+        <a href="https://github.com/tomfran/typo">tomfran/typo</a>
+    </p>
+    
+    
+    
+
+
+  </footer>
+
+  
+</body>
+
+<script src="/js/theme-switch.js"></script>
+<script defer src="/js/copy-code.js"></script>
+</html>

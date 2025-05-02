@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="en-us"
+  dir="ltr">
+
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+  <meta charset="utf-8">
+<meta name="viewport" content="width=device-width">
+
+
+
+
+
+
+
+
+    
+
+
+
+
+
+
+<link rel="icon" type="image/ico" href="http:/localhost:1313/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="http:/localhost:1313/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="http:/localhost:1313/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="192x192" href="http:/localhost:1313/android-chrome-192x192.png">
+<link rel="apple-touch-icon" sizes="180x180" href="http:/localhost:1313/apple-touch-icon.png">
+
+<meta name="description" content=""/>
+
+
+
+<title>
+    
+    DirDigger | Bug Digger
+    
+</title>
+
+<link rel="canonical" href="http://localhost:1313/posts/dirdigger/"/>
+
+<meta property="og:url" content="http://localhost:1313/posts/dirdigger/">
+  <meta property="og:site_name" content="Bug Digger">
+  <meta property="og:title" content="DirDigger">
+  <meta property="og:description" content="DirDigger is an efficient directory digging and busting tool that offers a range of features surpassing those of its alternatives. It serves a dual purpose, being an invaluable asset for both CTF enthusiasts and individuals engaged in the scanning of web app directories and API URLs encompassing bug bounty programs.
+Originally conceived as a portfolio project to create a Burp extension similar to gobuster/dirbuster, DirDigger experienced the creation and implementation of novel ideas and features, transforming it into a fully comprehensive directory digging tool.">
+  <meta property="og:locale" content="en_us">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2023-07-09T07:07:07+01:00">
+    <meta property="article:modified_time" content="2023-07-09T07:07:07+01:00">
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/assets/combined.min.0f4f5c64ee7100cff28e7c7366d922b5499829f72c91a53b9b17f236d85ad7e7.css" media="all">
+
+
+
+
+
+
+
+
+
+
+
+    
+
+
+
+
+</head>
+
+
+
+
+
+
+
+<body class="auto">
+
+  <div class="content">
+    <header>
+      
+
+<div class="header">
+
+    
+
+    <h1 class="header-title">
+        <a href="http://localhost:1313/">Bug Digger</a>
+    </h1>
+
+    <div class="flex">
+        
+
+        
+        
+      
+        <p class="small ">
+            <a href="/" >
+                /home
+            </a>
+        </p>
+        
+      
+        <p class="small ">
+            <a href="/posts" >
+                /posts
+            </a>
+        </p>
+        
+        
+    </div>
+
+    
+
+</div>
+
+    </header>
+
+    <main class="main">
+      
+
+
+
+
+<div class="breadcrumbs"><a href="/">Home</a><span class="breadcrumbs-separator">/</span><a href="/posts/">Posts</a><span class="breadcrumbs-separator">/</span>
+        <a href="/posts/dirdigger/">DirDigger</a></div>
+
+
+<div >
+  <article>
+    <header class="single-intro-container">
+        
+        <h1 class="single-title">DirDigger</h1>
+    
+        <p class="single-readtime">
+          <time datetime="2023-07-09T07:07:07&#43;01:00">July 9, 2023</time>
+        </p>
+    </header>
+    
+    <div class="single-content">
+      <p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<figure class=" img-small">
+
+    <div class="img-container" >
+        <img loading="lazy" alt="logo" src="/images/dirdigger/DD_MagGlass.svg#small" >
+    </div>
+
+    
+</figure>
+</p>
+<p>DirDigger is an efficient directory digging and busting tool that offers a range of features surpassing those of its alternatives. It serves a dual purpose, being an invaluable asset for both CTF enthusiasts and individuals engaged in the scanning of web app directories and API URLs encompassing bug bounty programs.</p>
+<p>Originally conceived as a portfolio project to create a Burp extension similar to gobuster/dirbuster, DirDigger experienced the creation and implementation of novel ideas and features, transforming it into a fully comprehensive directory digging tool.</p>
+<hr>
+<h2 class="heading" id="features">
+  Features
+  <a class="anchor" href="#features">#</a>
+</h2>
+<p><strong>DirDigger current features:</strong></p>
+<ul>
+<li>Works as BurpSuite extension and as desktop java application</li>
+<li>Tree representation for existing urls</li>
+<li>Recursive (directory depth and thread number can be set)</li>
+<li>Proxy support</li>
+<li>Filtered response codes</li>
+<li>Follow redirects</li>
+<li>See urls that are grouped by redirect in a Redirect Tree (if redirects were followed)</li>
+<li>File extensions</li>
+<li>Multiple file loading for keywords list</li>
+<li>Rate limiter detection (if detected scanning will be slowed down)</li>
+<li>Ignoring volatile params</li>
+<li>Stopping and Continuing execution</li>
+<li>Saving progress to a file and option to load a file to continue execution or see results (useful when working in team)</li>
+</ul>
+<hr>
+<h2 class="heading" id="screenshots">
+  Screenshots
+  <a class="anchor" href="#screenshots">#</a>
+</h2>
+<p>Existing target url directories representiation in Regular Tree</p>
+<p>
+
+
+
+
+
+
+
+
+
+
+
+<figure class="">
+
+    <div class="img-container" >
+        <img loading="lazy" alt="image 1 here" src="/images/dirdigger/screenshot1.png" >
+    </div>
+
+    
+</figure>
+</p>
+<p>Grouping urls by redirection in Redirect Tree</p>
+<p>
+
+
+
+
+
+
+
+
+
+
+
+<figure class="">
+
+    <div class="img-container" >
+        <img loading="lazy" alt="image 2 here" src="/images/dirdigger/screenshot2.png" >
+    </div>
+
+    
+</figure>
+</p>
+<hr>
+<h2 class="heading" id="project-future">
+  Project future
+  <a class="anchor" href="#project-future">#</a>
+</h2>
+<p><strong>To-do list for future enhancements:</strong></p>
+<ul>
+<li>Contexts (if domain has subdomains and you want to scan them at the same time, by changing context you can see progress and trees for a particular hostname)
+<ul>
+<li>In here maybe some cross context communication can exist (e.g. when one hostname redirects to another)</li>
+</ul>
+</li>
+<li>Pass selected urls, or 200 urls, to site map (one-way sync)
+<ul>
+<li>there can exist two-way sync also -&gt; to initialize tree in DirDigger extension based on site map and start working on that</li>
+</ul>
+</li>
+<li>Add option to create contexts based on target (Burp targets)</li>
+<li>Create cli version and modularize the project</li>
+<li>Save threads and application state in some PostgreSQL db (can be useful for teams that are performing application security testing)</li>
+</ul>
+<hr>
+<p>Github link: <a href="https://github.com/bbugdigger/DirDigger">https://github.com/bbugdigger/DirDigger</a></p>
+
+    </div>
+  </article>
+
+  
+
+  
+
+  
+  
+
+<div class="single-pagination">
+    <hr />
+
+    <div class="flexnowrap">
+
+        <div class="single-pagination-prev">
+            
+        </div>
+
+        <div class="single-pagination-next">
+            
+            <div class="single-pagination-container-next">
+                <div class="single-pagination-text">
+                    <a href="/posts/minesweeperhack/">
+                        Minesweeper Hack
+                    </a>
+                </div>
+                <div class="single-pagination-text">→</div>
+            </div>
+            
+        </div>
+
+    </div>
+
+    <hr />
+</div>
+
+
+
+  
+
+  
+
+  
+  <div class="back-to-top">
+    <a href="#top">
+      back to top
+    </a>
+  </div>
+  
+
+</div>
+
+
+    </main>
+  </div>
+
+  
+  
+
+
+
+
+
+    
+
+
+
+
+  <footer>
+    
+
+    
+    
+
+
+
+
+
+    
+
+
+
+
+    
+    <p>Powered by
+        <a href="https://gohugo.io/">Hugo</a>
+        and
+        <a href="https://github.com/tomfran/typo">tomfran/typo</a>
+    </p>
+    
+    
+    
+
+
+  </footer>
+
+  
+</body>
+
+<script src="/js/theme-switch.js"></script>
+<script defer src="/js/copy-code.js"></script>
+</html>
