@@ -2,11 +2,39 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Posts on Bug Digger</title>
-    <link>https://bugdigger.com/posts/</link>
+    <link>http://localhost:1313/posts/</link>
     <description>Recent content in Posts on Bug Digger</description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate></lastBuildDate>
-    <atom:link href="https://bugdigger.com/posts/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 03 Dec 2023 19:04:43 +0200</lastBuildDate>
+    <atom:link href="http://localhost:1313/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Call of Duty Zombie Hack</title>
+      <link>http://localhost:1313/posts/codzombie/</link>
+      <pubDate>Sun, 03 Dec 2023 19:04:43 +0200</pubDate>
+      <guid>http://localhost:1313/posts/codzombie/</guid>
+      <description>&lt;p&gt;Call of Duty Zombies is an adrenaline-packed action and very challenging mode. This game mode puts players through a test of endurance. However, sometimes, the thrill of the game can morph into frustration as the difficulty spikes. It’s at times like these that a touch of ingenuity can alter the table’s turn and I as passionate gamer and hacker believe in tilting the scales a bit towards our favor every once in a while.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>KarolaScript</title>
+      <link>http://localhost:1313/posts/karolascript/</link>
+      <pubDate>Sun, 03 Dec 2023 18:56:15 +0200</pubDate>
+      <guid>http://localhost:1313/posts/karolascript/</guid>
+      <description>&lt;p&gt;In my quest to better comprehend the fascinating intricacies of compilation process, compiler, and interpreter knowledge, I embarked on a journey of creating my own programming language - KarolaScript.&lt;/p&gt;&#xA;&lt;p&gt;KarolaScript is a decidely bare-bones interpreter. It doesn’t have rich features like an interactive debugger or a sophisticated static analyzer, as its primary purpose is to serve as a learning playground.&lt;/p&gt;&#xA;&lt;p&gt;KarolaScript, inspired by the fusion of Python and C, provides a procedurally-oriented, dynamically-typed programming environment. It distinguishes itself by recognizing classes and functions as first-class citizens; this allows for versatile usage scenarios such as assignment, passing as function parameters, and inclusion within complex data structures.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Minesweeper Hack</title>
+      <link>http://localhost:1313/posts/minesweeperhack/</link>
+      <pubDate>Wed, 16 Aug 2023 14:55:03 +0200</pubDate>
+      <guid>http://localhost:1313/posts/minesweeperhack/</guid>
+      <description>&lt;p&gt;This game is small enough not to be overwhelming, yet complex enough to make it a fun challenge. While there are definitely easier ways to crack this code, I’ve chosen a learn-as-I-go approach which might not be the quickest, but undoubtedly helps me delve deeper into the essence of reverse engineering.&lt;/p&gt;&#xA;&lt;hr&gt;&#xA;&lt;p&gt;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&lt;figure class=&#34;&#34;&gt;&#xD;&#xA;&#xD;&#xA;    &lt;div class=&#34;img-container&#34; &gt;&#xD;&#xA;        &lt;img loading=&#34;lazy&#34; alt=&#34;game&#34; src=&#34;http://localhost:1313/images/minesweeperhack/Minesweeper.png&#34; &gt;&#xD;&#xA;    &lt;/div&gt;&#xD;&#xA;&#xD;&#xA;    &#xD;&#xA;&lt;/figure&gt;&#xD;&#xA;&lt;/p&gt;&#xA;&lt;h3 class=&#34;heading&#34; id=&#34;imported-libraries&#34;&gt;&#xD;&#xA;  Imported Libraries&#xD;&#xA;  &lt;a class=&#34;anchor&#34; href=&#34;#imported-libraries&#34;&gt;#&lt;/a&gt;&#xD;&#xA;&lt;/h3&gt;&#xD;&#xA;&lt;p&gt;Since minesweeper is a GUI application, it uses graphics function which prints those graphics to the screen. Idea is to find this function and print flag whenever there is a mine.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>DirDigger</title>
+      <link>http://localhost:1313/posts/dirdigger/</link>
+      <pubDate>Sun, 09 Jul 2023 07:07:07 +0100</pubDate>
+      <guid>http://localhost:1313/posts/dirdigger/</guid>
+      <description>&lt;p&gt;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&lt;figure class=&#34; img-small&#34;&gt;&#xD;&#xA;&#xD;&#xA;    &lt;div class=&#34;img-container&#34; &gt;&#xD;&#xA;        &lt;img loading=&#34;lazy&#34; alt=&#34;logo&#34; src=&#34;http://localhost:1313/images/dirdigger/DD_MagGlass.svg#small&#34; &gt;&#xD;&#xA;    &lt;/div&gt;&#xD;&#xA;&#xD;&#xA;    &#xD;&#xA;&lt;/figure&gt;&#xD;&#xA;&lt;/p&gt;&#xA;&lt;p&gt;DirDigger is an efficient directory digging and busting tool that offers a range of features surpassing those of its alternatives. It serves a dual purpose, being an invaluable asset for both CTF enthusiasts and individuals engaged in the scanning of web app directories and API URLs encompassing bug bounty programs.&lt;/p&gt;&#xA;&lt;p&gt;Originally conceived as a portfolio project to create a Burp extension similar to gobuster/dirbuster, DirDigger experienced the creation and implementation of novel ideas and features, transforming it into a fully comprehensive directory digging tool.&lt;/p&gt;</description>
+    </item>
   </channel>
 </rss>
