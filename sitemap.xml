@@ -2,26 +2,14 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>http://localhost:1313/posts/codzombie/</loc>
+    <loc>https://bugdigger.com/</loc>
     <lastmod>2023-12-03T19:04:43+02:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/</loc>
+    <loc>https://bugdigger.com/posts/</loc>
     <lastmod>2023-12-03T19:04:43+02:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/posts/</loc>
-    <lastmod>2023-12-03T19:04:43+02:00</lastmod>
+    <loc>https://bugdigger.com/categories/</loc>
   </url><url>
-    <loc>http://localhost:1313/posts/karolascript/</loc>
-    <lastmod>2023-12-03T18:56:15+02:00</lastmod>
-  </url><url>
-    <loc>http://localhost:1313/posts/minesweeperhack/</loc>
-    <lastmod>2023-08-16T14:55:03+02:00</lastmod>
-  </url><url>
-    <loc>http://localhost:1313/posts/dirdigger/</loc>
-    <lastmod>2023-07-09T07:07:07+01:00</lastmod>
-  </url><url>
-    <loc>http://localhost:1313/categories/</loc>
-  </url><url>
-    <loc>http://localhost:1313/tags/</loc>
+    <loc>https://bugdigger.com/tags/</loc>
   </url>
 </urlset>
